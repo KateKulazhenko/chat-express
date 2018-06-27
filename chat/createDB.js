@@ -1,10 +1,12 @@
-const User = require('./models/user');
+const mongoose = require("mongoose");
+const User = require("./models/user");
 
-const user = new User({
-    username: 'Test',
-    password: 'secret'
-});
+mongoose.connection.on("open", function() {
+  const db = mongoose.connection;
+  db.dropDatabase(function(err) {
+    if (err) throw err;
 
-user.save(function(err, user, affected) {
-    if(err) throw err;
+    console.log("OK");
+    mongoose.disconnect();
+  });
 });
