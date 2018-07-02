@@ -4,6 +4,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import mongoose from "mongoose";
+import ejs from "ejs-locals";
 
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
@@ -14,8 +15,13 @@ const app = express();
 mongoose.connect("mongodb://localhost/chat");
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+app.engine("ejs", ejs);
+app.set("views", __dirname, "/templates");
 app.set("view engine", "ejs");
+
+app.get("env") === "development"
+  ? app.use(logger("dev"))
+  : app.use(logger("default"));
 
 app.use(logger("dev"));
 app.use(express.json());
