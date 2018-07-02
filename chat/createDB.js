@@ -1,5 +1,14 @@
-const mongoose = require("mongoose");
-const User = require("./models/user");
+import mongoose from "mongoose";
+import User from "./models/user";
+
+const open = callback => {
+  return mongoose.connection.on("open", callback);
+};
+
+const dropDatabase = () => {
+  const db = mongoose.connection;
+  return db.dropDatabase();
+};
 
 mongoose.connection.on("open", function() {
   const db = mongoose.connection;
