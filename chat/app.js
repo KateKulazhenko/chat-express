@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import mongoose from "mongoose";
 import ejs from "ejs-locals";
+import config from "./config/config";
+import session from "express-session";
 
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
@@ -28,6 +30,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: config.session.secret,
+    name: config.session.kye,
+    resave: true,
+    saveUninitialized: true,
+    cookie: config.session.cookie
+  })
+);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
