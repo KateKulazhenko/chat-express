@@ -13,6 +13,7 @@ import usersRouter from "./routes/users";
 import sendErrors from "./middleware/sendHttpError";
 
 const app = express();
+const MongoStore = require("connect-mongo")(session);
 
 mongoose.connect("mongodb://localhost/chat");
 
@@ -37,9 +38,15 @@ app.use(
     name: config.session.kye,
     resave: true,
     saveUninitialized: true,
-    cookie: config.session.cookie
+    cookie: config.session.cookie,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
+
+app.use((req, res, next) => {
+  req.session.numberOfVisit = req.session.numberOfVisit + 1 || 1;
+  res.send("Visit: " + req.session.numberOfVisit);
+});
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
