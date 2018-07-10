@@ -8,7 +8,6 @@ import ejs from "ejs-locals";
 import config from "./config/config";
 import session from "express-session";
 import http from "http";
-import io from "socket.io";
 
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
@@ -71,9 +70,4 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-//module.exports = app;
-
-const server = http.creareServer(app);
-server.listen(config.port, function() {
-  log.info("Express server listening on port " + config.port);
-});
+module.exports = app;
