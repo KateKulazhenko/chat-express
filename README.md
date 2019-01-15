@@ -1,5 +1,5 @@
-# Chat with Express anf Socker.io
-
+# Chat with Express and Socker.io
+<!-- 
 - [Requirements](#requirements)
 - [Installation](#installation)
 
@@ -22,4 +22,4 @@ npm install
 
 ```sh
 npm start
-```
+``` -->
