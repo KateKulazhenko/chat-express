@@ -1,0 +1,13 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start",
+    "start": "concurrently \"npm run client\" \"npm run server\" "
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
