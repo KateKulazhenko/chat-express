@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffe9d0;
+  height: 100%;
+}
+
+.app {
+  position: relative;
+  min-height: 100%;
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+}
+
+.--small {
+  top: 22%;
+  left: 68%;
+}
+
+.--big {
+  transform: translate(-50%, -50%);
+}
